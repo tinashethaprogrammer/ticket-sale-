@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0d0c2b, #111b42);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Floating Animation Background */
+.floating-bg {
+    position: fixed;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 0, 90, 0.4);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 6s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(80px, 120px) scale(1.3); }
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 10%;
+    min-height: 100vh;
+}
+
+/* Text Content */
+.title {
+    font-size: 3.8rem;
+    font-weight: 700;
+}
+
+.role {
+    font-size: 1.7rem;
+    margin-top: 10px;
+    color: #ff7afc;
+}
+
+.summary {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    max-width: 550px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-box h3 {
+    font-size: 2.5rem;
+    color: #ff4bcf;
+}
+
+.stat-box p {
+    margin-top: 5px;
+    opacity: 0.7;
+}
+
+/* Profile Image */
+.profile img {
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    animation: floatImage 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatImage {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding-top: 120px;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+}

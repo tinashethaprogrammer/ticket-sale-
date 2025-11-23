@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinashe Portfolio</title>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ---------- GLOBAL ---------- */
+.footer {
+    background: #11121a;
+    color: #e6ecff;
+    padding: 40px 25px 20px;
+    font-family: "Inter", sans-serif;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-left h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.footer-left p {
+    margin: 5px 0 0;
+    color: #9fb4ff;
+}
+
+.footer-center {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.footer-center a {
+    text-decoration: none;
+    color: #e6ecff;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.footer-center a:hover {
+    color: #7a4cff;
+}
+
+.footer-right {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-right a {
+    color: #e6ecff;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.footer-right a:hover {
+    color: #7a4cff;
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 14px;
+    color: #9fb4ff;
+    margin-top: 15px;
+}
+@media(min-width:768px){
+    .footer-container{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: #000;
+    color: #e6ecff;
+    overflow-x: hidden;
+}
+.container { width: 90%; margin: auto; }
+
+/* ---------- HEADER ---------- */
+header {
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+header h1 { font-size: 28px; margin: 0; color: #d8e4ff; font-weight: 700; }
+header a { padding: 10px 22px; background: #fff; color: #000; border-radius: 12px; text-decoration: none; font-weight: 600; }
+
+/* ---------- HERO ---------- */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(120, 70, 255, 0.4), transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(255, 70, 200, 0.4), transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(70, 200, 255, 0.4), transparent 60%);
+    filter: blur(80px);
+    z-index: -1;
+}
+.hero-intro { margin-top: 90px; padding: 0 20px; }
+.hero-intro h1 { font-size: 38px; line-height: 1.4; font-weight: 700; color: #d8e4ff; max-width: 500px; text-align: left; }
+.changing-word { display: inline-block; position: relative; width: 200px; height: 35px; overflow: hidden; }
+.changing-word .word { position: absolute; width: 100%; left: 0; top: 100%; opacity: 0; display: flex; align-items: center; gap: 8px; justify-content: left; transition: all 0.6s ease; font-weight: 700; color: #7da2ff; font-size: 30px; }
+.changing-word .word.active { top: 0; opacity: 1; }
+.intro-subtitle { margin-top: 25px; font-size: 18px; color: #9fb4ff; text-align: left; }
+.scroll-btn { display: inline-block; margin-top: 35px; padding: 14px 32px; border: 2px solid #7a4cff; border-radius: 60px; color: #fff; font-size: 18px; text-decoration: none; transition: 0.3s ease; }
+.scroll-btn:hover { background: #7a4cff; transform: translateY(3px); }
+
+/* ---------- STATS ---------- */
+.stats { margin-top: 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.stat-box { background: #11121a; padding: 35px 25px; border-radius: 12px; text-align: center; }
+.count { font-size: 42px; font-weight: 800; margin-bottom: 10px; }
+
+/* ---------- TIMELINE ---------- */
+.section-title { font-size: 30px; margin-top: 60px; font-weight: 700; }
+.timeline { position: relative; margin-top: 40px; padding-left: 40px; }
+.timeline-line { position: absolute; left: 25px; top: 0; width: 3px; background: linear-gradient(#6a67ff, #bd74ff); height: 0; transition: height 0.8s ease-out; }
+.job { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; display: flex; gap: 20px; margin-bottom: 55px; position: relative; }
+.job.show { opacity: 1; transform: translateX(0); }
+.timeline-dot { width: 14px; height: 14px; background: #a57bff; border-radius: 50%; position: absolute; left: 19px; transform: scale(0.5); transition: 0.5s ease; }
+.job.show .timeline-dot { transform: scale(1.2); background: #fff; }
+.job-logo { width: 55px; height: 55px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid #7a4cff; flex-shrink: 0; }
+
+/* ---------- TESTIMONIALS ---------- */
+.testimonial-card { opacity: 0; transform: translateX(-100px); transition: all 0.8s ease-out; margin-top: 12px; display: flex; align-items: flex-start; gap: 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); background: #1a1a2e; padding: 18px 20px; position: relative; left: -25px; width: calc(100% - 25px); }
+.testimonial-card.show { opacity: 1; transform: translateX(0); }
+.supervisor-photo { width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid #7a4cff; flex-shrink: 0; }
+.supervisor-compliment { color: #a0ffcf; font-style: italic; line-height: 1.5; }
+.supervisor-name { color: #7a4cff; font-weight: 600; font-size: 14px; align-self: flex-end; }
+.stars { color: #FFD700; margin-bottom: 6px; }
+
+/* ---------- EDUCATION ---------- */
+.education-section { position: relative; padding-left: 40px; margin-top: 40px; }
+.education-line { position: absolute; left: 25px; top: 0; width: 3px; height: 100%; background: linear-gradient(#6a67ff, #bd74ff); }
+.edu-card { opacity: 0; transition: all 0.8s ease-out; display: flex; gap: 20px; margin-bottom: 35px; position: relative; border-radius: 12px; background: #11121a; padding: 20px 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.edu-card.show { opacity: 1; }
+.edu-dot { width: 14px; height: 14px; background: #7a4cff; border-radius: 50%; position: absolute; left: 20px; top: 25px; }
+.edu-badge { width: 45px; height: 45px; border-radius: 8px; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #6a67ff, #bd74ff); transition: all 0.6s ease; box-shadow: 0 0 10px rgba(107,103,255,0.5); transform: translateX(-50px); opacity: 0; }
+.edu-card.show .edu-badge { transform: translateX(0); opacity: 1; box-shadow: 0 0 25px rgba(107,103,255,0.9), 0 0 50px rgba(189,116,255,0.5); }
+.edu-content h3 { margin: 0; font-size: 22px; font-weight: 700; color: #d8e4ff; }
+.edu-institution { font-size: 16px; color: #9fb4ff; margin: 5px 0; }
+.edu-date { font-size: 14px; color: #aaa; margin-bottom: 12px; }
+.edu-description { font-size: 15px; line-height: 1.5; color: #c0c6ff; }
+
+/* ---------- PROJECTS ---------- */
+.projects-section { margin-top: 60px; display: grid; gap: 35px; }
+.project-card { background: #11121a; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 25px rgba(0,0,0,0.5); opacity: 0; transform: translateY(60px); transition: 0.8s ease-out; }
+.project-card.show { opacity: 1; transform: translateY(0); }
+.project-image { width: 100%; height: 200px; background-size: cover; background-position: center; transition: 0.4s ease; }
+.project-image:hover { transform: scale(1.05); }
+.project-content { padding: 20px 25px; }
+.project-content h3 { margin: 0; font-size: 24px; font-weight: 700; color: #d8e4ff; }
+.project-description { margin: 12px 0 18px; font-size: 15px; color: #c0c6ff; line-height: 1.6; }
+.project-btn { display: inline-block; padding: 12px 25px; background: linear-gradient(135deg, #6a67ff, #bd74ff); color: #fff; border-radius: 40px; text-decoration: none; font-weight: 600; transition: 0.3s ease; }
+.project-btn:hover { transform: translateY(3px); box-shadow: 0px 8px 20px rgba(109,103,255,0.4); }
+@media (min-width: 768px) { .projects-section { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- TECH STACKS ---------- */
+.tech-stacks-section { margin-top: 60px; }
+.tech-stacks-section .section-title { font-size: 30px; margin-bottom: 30px; font-weight: 700; }
+.tech-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 25px; }
+.tech-card { background: #11121a; border-radius: 18px; padding: 25px 20px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.tech-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(107,103,255,0.5); }
+.tech-icon { font-size: 40px; margin-bottom: 15px; }
+.tech-name { font-size: 16px; font-weight: 600; color: #d8e4ff; }
+/* Tech stack icon floating animation */
+@keyframes float {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    50%  { transform: translateY(-8px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+.tech-icon {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+/* TECH STACKS ANIMATION */
+.tech-card { 
+    transform: translateY(50px); 
+    opacity: 0; 
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+.tech-card.show { 
+    transform: translateY(0); 
+    opacity: 1; 
+}
+/* ---------- FLOAT UP ANIMATION ---------- */
+.animate-up {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+.animate-up.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* ---------- CONTACT FORM ---------- */
+.contact-section {
+    background: #11121a;
+    padding: 50px 25px;
+    border-radius: 18px;
+    margin-top: 60px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.contact-form input,
+.contact-form textarea {
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    background: #1a1a2e;
+    color: #e6ecff;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    background: #252540;
+    box-shadow: 0 0 10px rgba(107,103,255,0.5);
+}
+.submit-btn {
+    padding: 16px 30px;
+    border: none;
+    border-radius: 60px;
+    background: linear-gradient(135deg, #6a67ff, #bd74ff);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    align-self: flex-start;
+}
+.submit-btn:hover {
+    transform: translateY(3px);
+    box-shadow: 0 8px 20px rgba(107,103,255,0.4);
+}
+
+
+.scroll-btn, .project-btn, .submit-btn {
+    box-shadow: 0 0 10px #7a4cff, 0 0 20px #bd74ff, 0 0 30px #6a67ff;
+    transition: box-shadow 0.3s ease;
+}
+.scroll-btn:hover, .project-btn:hover, .submit-btn:hover {
+    box-shadow: 0 0 20px #7a4cff, 0 0 40px #bd74ff, 0 0 60px #6a67ff;
+}
+.tech-icon {
+    color: #7a4cff;
+    text-shadow: 0 0 8px #7a4cff, 0 0 16px #bd74ff;
+    transition: text-shadow 0.3s ease;
+}
+.tech-icon:hover {
+    text-shadow: 0 0 12px #7a4cff, 0 0 24px #bd74ff, 0 0 36px #6a67ff;
+}
+.job-logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #7a4cff;
+    flex-shrink: 0;
+    /* Add glow effect */
+    box-shadow: 0 0 8px #7a4cff, 0 0 16px #bd74ff, 0 0 24px #6a67ff;
+    transition: box-shadow 0.3s ease;
+}
+
+.job-logo:hover {
+    box-shadow: 0 0 15px #7a4cff, 0 0 30px #bd74ff, 0 0 45px #6a67ff;
+}
+.bubble-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px; /* Same as hero background */
+    overflow: hidden;
+    z-index: -2; /* Behind hero background */
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7), rgba(255,255,255,0.1) 70%);
+    border: 2px solid rgba(255,255,255,0.3); /* adds the outline of a bubble */
+    opacity: 0.5;
+    filter: blur(2px); /* small blur for realistic softness */
+    animation: floatBubble linear infinite;
+}
+/* Randomize sizes and animation durations */
+.bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 6s; animation-delay: 0s;}
+.bubble:nth-child(2) { left: 30%; width: 25px; height: 25px; animation-duration: 8s; animation-delay: 2s;}
+.bubble:nth-child(3) { left: 50%; width: 30px; height: 30px; animation-duration: 10s; animation-delay: 1s;}
+.bubble:nth-child(4) { left: 70%; width: 22px; height: 22px; animation-duration: 7s; animation-delay: 3s;}
+.bubble:nth-child(5) { left: 90%; width: 28px; height: 28px; animation-duration: 9s; animation-delay: 4s;}
+
+@keyframes floatBubble {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-600px) scale(1.2); opacity: 0; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="hero-background"></div>
+<div class="bubble-container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+<div class="container">
+
+<header>
+    <h1>My Timeline</h1>
+    <a href="#contact" class="scroll-btn-header">Contact</a>
+</header>
+
+<!-- HERO -->
+<section class="hero-intro">
+    <h1>
+        Turning 
+        <span class="changing-word">
+            <span class="word active"><i>💡</i> concepts</span>
+            <span class="word"><i>💻</i> code</span>
+            <span class="word"><i>🎨</i> designs</span>
+            <span class="word"><i>🛠️</i> systems</span>
+            <span class="word"><i>⚙️</i> software</span>
+            <span class="word"><i>🚀</i> solutions</span>
+        </span>
+        into user-focused ideas
+    </h1>
+    <p class="intro-subtitle">
+        Hi, my name is <strong>Tinashe Nyuwani</strong> — Systems & Software Specialist
+    </p>
+    <a href="#experience" class="scroll-btn">↓ See My Work</a>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stat-box"><div class="count" data-target="2">0</div><div>Years Experience</div></div>
+    <div class="stat-box"><div class="count" data-target="6">0</div><div>Clients</div></div>
+    <div class="stat-box"><div class="count" data-target="8">0</div><div>Completed Projects</div></div>
+    <div class="stat-box"><div class="count" data-target="90" data-percent="true">0%</div><div>Client Retention</div></div>
+</section>
+
+<!-- EXPERIENCE -->
+<div id="experience"></div>
+<div class="section-title">Experience</div>
+<div class="timeline">
+    <div class="timeline-line"></div>
+
+    <!-- Job 1 -->
+    <div class="job">
+        <div class="timeline-dot"></div>
+        <div class="job-logo" style="background-image: url('792030B6-69DB-47FA-8486-F987372C62C4.jpeg')"></div>
+        <div class="job-content">
+           <h3>City of Harare</h3> <h3>IT Technician Intern</h3>
+            <div class="job-date">2022–2023</div>
+            <ul>
+                <li>Performed routine backups and system updates to safeguard data integrity and business continuity.</li>
+                <li>Assisted in troubleshooting software issues for accounting, design (CAD/BIM), and project management systems.</li>
+                <li>Managed user accounts, permissions, and access to shared drives and company systems.</li>
+                <li>Assisted in monitoring antivirus alerts and basic security scans to ensure systems were protected.</li>
+                <li>Helped staff with basic accounting tasks and troubleshooting the software.</li>
+                <li>Supported LAN and Wi-Fi connectivity issues.</li>
+            </ul>
+
+            <div class="testimonial-card">
+                <div class="supervisor-photo" style="background-image: url('684842F0-684F-47C3-8ED0-6DA8E1A0061E.jpeg')"></div>
+                <div class="testimonial-text">
+                    <div class="stars">★★★★★</div>
+                    <p class="supervisor-compliment">"Tinashe consistently demonstrated excellent technical skills and problem-solving abilities."</p>
+                    <p class="supervisor-name">IT Manager<br>Dr William Mugobogobo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="job">
+        <div class="timeline-dot"></div>
+        <div class="job-logo" style="background-image: url('86BEEF31-CCC9-40D7-99D1-E6EE52EC24A6.jpeg')"></div>
+        <div class="job-content">
+           <h3>911 Contractors</h3> <h3>Part Time IT Support</h3>
+            <div class="job-date">Dec 2024 – June 2025</div>
+            <ul>
+                <li>Installed, configured, and maintained construction management software.</li>
+                <li>Provided user support for office productivity software.</li>
+                <li>Maintained LAN connectivity across sites.</li>
+                <li>Installed and configured laptops, desktops, and printers.</li>
+                <li>Provided technical support and training to staff.</li>
+            </ul>
+
+            <div class="testimonial-card">
+                <div class="supervisor-photo" style="background-image: url('1B704CF8-24D4-4D39-BD89-5D8131519A30.jpeg')"></div>
+                <div class="testimonial-text">
+                    <div class="stars">★★★★★</div>
+                    <p class="supervisor-compliment">"Tinashe has shown exceptional dedication and technical expertise, earning trust and respect."</p>
+                    <p class="supervisor-name">911 CEO<br>Mr Kenward Mazoe</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section-title">Education & Affiliations</div>
+<div class="education-section">
+    <div class="education-line"></div>
+
+    <div class="edu-card">
+        <div class="edu-dot"></div>
+        <div class="edu-badge">
+            <img src="70D9A995-6A5B-460C-A48F-080E0C6B42F4.jpeg" style="width:35px;height:35px;border-radius:6px;">
+        </div>
+        <div class="edu-content">
+            <h3>Bachelor of IT</h3>
+            <p class="edu-institution">Chinhoyi University of Technology</p>
+            <p class="edu-date">2020 – 2024</p>
+            <p class="edu-description">Graduated with Honors in Information Technology specializing in Systems & Software.</p>
+        </div>
+    </div>
+
+    <div class="edu-card">
+        <div class="edu-dot"></div>
+        <div class="edu-badge">
+            <img src="436C835F-B8F9-49A2-B2E6-CFD7D322D12B.jpeg" style="width:35px;height:35px;border-radius:6px;">
+        </div>
+        <div class="edu-content">
+            <h3>Professional Membership</h3>
+            <p class="edu-institution">Computer Association of Zimbabwe (CAZ)</p>
+            <p class="edu-date">2022 – Present</p>
+                      <p class="edu-description">Active member participating in IT networking and professional development programs.</p>
+        </div>
+    </div>
+</div>
+
+<!-- PROJECTS SECTION -->
+<div class="section-title">Projects</div>
+
+<section class="projects-section">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+        <div class="project-image" style="background-image: url('14A30DFB-D69B-406A-B7E2-77ED7500BE33.png');"></div>
+        <div class="project-content">
+            <h3>User access system</h3>
+            <p class="project-description">
+           User access right system portal is meant to manage users' access rights to applications or files within an organization. The system can be modified to meet the requirements of any organization. The application also allows for asset register and tracking. One of the unique features of the system is that it uses Biometric Authentication.
+            </p>
+            <a href="https://accessportal.netlify.app/" class="project-btn">View Project</a>
+        </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card">
+        <div class="project-image" style="background-image: url('30FD0A55-538A-43F5-A665-8CDEDF331116.jpeg');"></div>
+        <div class="project-content">
+            <h3>The Digitruck Project with the Ministry of ICT and Huawei </h3>
+            <p class="project-description">
+                A mobile digital learning lab built from a refurbished shipping container. I helped set up the IT systems, configured laptops and networking tools, and also facilitated digital literacy training for people in underserved communities.
+            </p>
+            <a href="https://technomag.co.zw/mnangagwa-commissions-huawei-donated-digtruck-to-boost-digital-literacy-in-zimbabwe/" class="project-btn">Visit Site</a>
+        </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card">
+        <div class="project-image" style="background-image: url('58E1E73D-1C05-4571-BF75-33515E2A9FA5.jpeg');"></div>
+        <div class="project-content">
+            <h3>Otenova Legal</h3>
+            <p class="project-description">
+                I designed and developed a comprehensive Law Management System aimed at streamlining workflow processes within legal practices. The system facilitates the efficient download of bill invoices and enables seamless sending of invoices in PDF format as email. Additionally, it features integration with the Google Gemini AI API, leveraging artificial intelligence for enhanced functionality and accessibility. The system also includes capabilities for recording payments, bulk billing, and sending automated bill reminders to clients. This project showcases my ability to conceptualize, implement, and integrate advanced features into software solutions, contributing to enhanced operational efficiency within the legal industry.
+            </p>
+            <a href="https://www.otevana.com/" class="project-btn">Open Project</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- TECH STACKS SECTION -->
+<div class="tech-stacks-section">
+    <div class="section-title">Preferred Tech Stacks</div>
+    <div class="tech-cards">
+        <div class="tech-card">
+            <div class="tech-icon" style="color:#F7DF1E;"><i class="fab fa-js-square"></i></div>
+            <div class="tech-name">JavaScript</div>
+        </div>
+        <div class="tech-card">
+            <div class="tech-icon" style="color:#61DAFB;"><i class="fab fa-react"></i></div>
+            <div class="tech-name">React</div>
+        </div>
+        <div class="tech-card">
+            <div class="tech-icon" style="color:#339933;"><i class="fab fa-node"></i></div>
+            <div class="tech-name">Node.js</div>
+        </div>
+        <div class="tech-card">
+            <div class="tech-icon" style="color:#3776AB;"><i class="fab fa-python"></i></div>
+            <div class="tech-name">Python</div>
+        </div>
+<div class="tech-card">
+    <div class="tech-icon" style="color:#007FFF;"><i class="fab fa-microsoft"></i></div>
+    <div class="tech-name">Azure</div>
+</div>
+<div class="tech-card">
+    <div class="tech-icon" style="color:#0078D4;"><i class="fas fa-envelope"></i></div>
+    <div class="tech-name">MS 365</div>
+</div>
+<div class="tech-card">
+    <div class="tech-icon" style="color:#0047AB;"><i class="fas fa-robot"></i></div>
+    <div class="tech-name">Blue Prism</div>
+</div>
+        <div class="tech-card">
+            <div class="tech-icon" style="color:#E34F26;"><i class="fab fa-html5"></i></div>
+            <div class="tech-name">HTML/CSS</div>
+        </div>
+    </div>
+</div>
+
+</div> <!-- END CONTAINER -->
+<!-- CONTACT FORM -->
+<div id="contact" class="section-title">Contact Me</div>
+<section class="contact-section">
+    <form action="https://wb3forms.com/api/form/yourformid" method="POST" class="contact-form">
+        <!-- Access Key for WB3Forms -->
+        <input type="hidden" name="access_key" value="a26a9bf2-e949-4a03-ac69-f0fa8b4e9856">
+
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+</section>
+
+</div> <!-- END CONTAINER -->
+<script>
+// WORD ROTATION
+const words = document.querySelectorAll(".changing-word .word");
+let index = 0;
+function changeWord() {
+    words.forEach(w => w.classList.remove("active"));
+    words[index].classList.add("active");
+    index = (index + 1) % words.length;
+}
+changeWord();
+setInterval(changeWord, 2000);
+
+// STATS COUNTER
+// STATS COUNTER (with easing)
+// STATS COUNTER (Faster)
+// STATS COUNTER (Ultra Fast)
+const counters = document.querySelectorAll(".count");
+let counted = false;
+
+function isInView(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+function runCounter() {
+    if(counted) return;
+    let visible = false;
+    counters.forEach(c => { if(isInView(c)) visible = true; });
+    if(!visible) return;
+
+    counters.forEach(counter => {
+        const target = +counter.dataset.target;
+        let value = 0;
+        const duration = 200; // total duration 200ms
+        const intervalTime = 10; // update every 10ms
+        const increment = target / (duration / intervalTime);
+
+        function update(){
+            value += increment;
+            if(value >= target) value = target;
+            if(counter.dataset.percent === "true"){
+                counter.innerText = Math.floor(value) + "%";
+            } else {
+                counter.innerText = Math.floor(value) + "+";
+            }
+            if(value < target) setTimeout(update, intervalTime);
+        }
+
+        update();
+    });
+
+    counted = true;
+}
+
+window.addEventListener('scroll', runCounter);
+window.addEventListener('load', runCounter);
+
+// TIMELINE ANIMATION
+// TIMELINE ANIMATION (fixed)
+// TIMELINE ANIMATION (normal speed)
+// TIMELINE ANIMATION (slightly faster)
+// TIMELINE ANIMATION (corrected start + faster inside section)
+// TIMELINE ANIMATION (slightly faster + correct start)
+const jobs = document.querySelectorAll('.job');
+const line = document.querySelector('.timeline-line');
+
+function animateTimeline() {
+    const timeline = document.querySelector('.timeline');
+    const timelineTop = timeline.offsetTop;
+    const timelineBottom = timelineTop + timeline.offsetHeight;
+
+    // Start when timeline is closer to view (faster feel)
+    const scrollY = window.scrollY + window.innerHeight * 0.42;
+
+    // Do not animate before reaching the section
+    if (scrollY < timelineTop) {
+        line.style.height = "0px";
+        return;
+    }
+
+    let maxHeight = 0;
+
+    jobs.forEach((job) => {
+        const jobTop = job.offsetTop + timelineTop;
+        const jobBottom = jobTop + job.offsetHeight;
+
+        // Slightly earlier reveal (faster feeling)
+        if (scrollY > jobTop - 120) {
+            job.classList.add('show');
+            const testimonial = job.querySelector('.testimonial-card');
+            if (testimonial) testimonial.classList.add('show');
+        }
+
+        // Slightly faster line growth
+        if (scrollY > jobTop) {
+            let visibleHeight = (scrollY - timelineTop) * 1.15; // 15% faster
+
+            if (visibleHeight > jobBottom - timelineTop) {
+                visibleHeight = jobBottom - timelineTop;
+            }
+
+            maxHeight = Math.max(maxHeight, visibleHeight);
+        }
+    });
+
+    line.style.height = maxHeight + "px";
+}
+
+window.addEventListener('scroll', animateTimeline);
+window.addEventListener('load', animateTimeline);
+// EDUCATION ANIMATION
+const eduCards = document.querySelectorAll('.edu-card');
+function animateEducation(){
+    eduCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.85){
+            card.classList.add('show');
+        }
+    });
+}
+window.addEventListener('scroll', animateEducation);
+window.addEventListener('load', animateEducation);
+
+// PROJECTS ANIMATION
+const projectCards = document.querySelectorAll('.project-card');
+function animateProjects(){
+    projectCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.85){
+            card.classList.add('show');
+        }
+    });
+}
+window.addEventListener('scroll', animateProjects);
+window.addEventListener('load', animateProjects);
+// TECH STACK ICON HOVER ANIMATION
+const techIcons = document.querySelectorAll('.tech-icon');
+techIcons.forEach(icon => {
+    icon.addEventListener('mouseenter', () => {
+        icon.style.animation = "float 1s ease-in-out infinite";
+    });
+    icon.addEventListener('mouseleave', () => {
+        icon.style.animation = "float 3s ease-in-out infinite";
+    });
+});
+// TECH STACKS SCROLL ANIMATION
+const techCards = document.querySelectorAll('.tech-card');
+function animateTechStacks() {
+    techCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.85){
+            card.classList.add('show');
+        }
+    });
+}
+window.addEventListener('scroll', animateTechStacks);
+window.addEventListener('load', animateTechStacks);
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+<script>
+
+</script>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <h2>Tinashe Nyuwani</h2>
+            <p>Systems & Software Specialist</p>
+        </div>
+        <div class="footer-center">
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-right">
+          
+<!-- EMAIL CONTACT -->
+<!-- EMAIL CONTACT SECTION -->
+
+</div>
+
+</div> <!-- END CONTAINER -->  </div>
+    </div>
+    <div class="footer-bottom">tinashenyuwani36@gmail.com<br>
+        &copy; 2025 Tinashe Nyuwani. All Rights Reserved.
+    </div>
+</footer>
+</body>
+</html>
